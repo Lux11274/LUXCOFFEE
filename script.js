@@ -1,33 +1,84 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Login Form Handling
+    // Login Form Handling with Modal
     const loginForm = document.querySelector("#login form");
-    loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        const username = loginForm.querySelector("input[type='text']").value;
-        const password = loginForm.querySelector("input[type='password']").value;
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            
+            const username = loginForm.querySelector("input[type='text']").value;
+            const password = loginForm.querySelector("input[type='password']").value;
+            const loginMessage = document.querySelector("#login-message");
 
-        if (username === "admin" && password === "password") {
-            alert("Login successful! Welcome, " + username + "!");
-        } else {
-            alert("Invalid credentials. Please try again.");
-        }
-    });
+            if (username === "admin" && password === "password") {
+                loginMessage.textContent = "Login successful! Welcome, " + username + "!";
+                loginMessage.style.color = "green";
+            } else {
+                loginMessage.textContent = "Invalid credentials. Please try again.";
+                loginMessage.style.color = "red";
+            }
+        });
+    }
 
-    // Smooth Scrolling for Navigation Links
+    // Animated Smooth Scrolling for Navigation Links
     document.querySelectorAll("nav ul li a").forEach(anchor => {
         anchor.addEventListener("click", function (event) {
             event.preventDefault();
             const targetSection = document.querySelector(this.getAttribute("href"));
-            targetSection.scrollIntoView({ behavior: "smooth" });
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 50,
+                    behavior: "smooth"
+                });
+            }
         });
     });
 
-    // Contact Form Handling
+    // Contact Form Handling with Confirmation Message
     const contactForm = document.querySelector("#contact form");
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        alert("Thank you for reaching out! We will get back to you soon.");
-        contactForm.reset();
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            document.querySelector("#contact-message").textContent = "Thank you for reaching out! We will get back to you soon.";
+            contactForm.reset();
+        });
+    }
+
+    // Toggle Mobile Menu with Smooth Animation
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector("nav ul");
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+    }
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.querySelector("#dark-mode-toggle");
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+        });
+    }
+
+    // Product Showcase Animation
+    const productItems = document.querySelectorAll(".product");
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    productItems.forEach(item => observer.observe(item));
+
+    // Simple Cart System
+    const cart = [];
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", function () {
+            const productName = this.dataset.name;
+            cart.push(productName);
+            alert(`${productName} added to cart!`);
+        });
     });
 });
