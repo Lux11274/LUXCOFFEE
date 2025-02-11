@@ -5,55 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lux Coffee</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>Lux Coffee</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="dark-mode-toggle">Dark Mode</button></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="home">
-        <h2>Welcome to Lux Coffee</h2>
-        <p>Enjoy the finest coffee experience.</p>
-        <img src="coffee1.jpg" alt="Coffee cup">
-    </section>
-    
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Lux Coffee is dedicated to serving the best coffee in town.</p>
-    </section>
-    
-    <section id="menu">
-        <h2>Our Menu</h2>
-        <div class="gallery">
-            <img src="coffee2.jpg" alt="Espresso">
-            <img src="coffee3.jpg" alt="Latte">
-            <img src="coffee4.jpg" alt="Cappuccino">
-        </div>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-        <p id="contact-message"></p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
-    </footer>
+    <div id="login-screen">
+        <h2>Login to Lux Coffee</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Lux Coffee</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#inbox">Inbox</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><button id="dark-mode-toggle">Dark Mode</button></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="home">
+            <h2>Welcome to Lux Coffee</h2>
+            <p>Enjoy the finest coffee experience crafted with passion.</p>
+            <img src="coffee1.jpg" alt="Premium Coffee" class="hero-image">
+        </section>
+        
+        <section id="shop">
+            <h2>Shop</h2>
+            <div class="gallery">
+                <div class="item">
+                    <img src="1.jpg" alt="Caffè macchiato">
+                    <p>Caffè Macchiato</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="2.jpg" alt="Cappuccino">
+                    <p>Cappuccino</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="3.jpg" alt="Flat White">
+                    <p>Flat White</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="4.jpg" alt="Latte">
+                    <p>Latte</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="5.jpg" alt="Americano">
+                    <p>Americano</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+            </div>
+            <button class="cart-button"><i class="fas fa-shopping-cart"></i> Cart</button>
+            <button class="add-button"><i class="fas fa-plus"></i> Add Item</button>
+        </section>
+        
+        <section id="inbox">
+            <h2>Inbox</h2>
+            <p>No new messages.</p>
+        </section>
+        
+        <section id="profile">
+            <h2>Your Profile</h2>
+            <p>Welcome, User!</p>
+            <button class="edit-profile">Edit Profile</button>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
+        </footer>
+    </div>
     
     <script src="script.js"></script>
 </body>

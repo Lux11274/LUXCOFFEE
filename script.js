@@ -1,97 +1,89 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Login Form Handling with Modal
-    const loginForm = document.querySelector("#login form");
-    if (loginForm) {
-        loginForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            
-            const username = loginForm.querySelector("input[type='text']").value;
-            const password = loginForm.querySelector("input[type='password']").value;
-            const loginMessage = document.querySelector("#login-message");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux Coffee</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="login-screen">
+        <h2>Login to Lux Coffee</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
 
-            if (username === "admin" && password === "password") {
-                loginMessage.textContent = "Login successful! Welcome, " + username + "!";
-                loginMessage.style.color = "green";
-            } else {
-                loginMessage.textContent = "Invalid credentials. Please try again.";
-                loginMessage.style.color = "red";
-            }
-        });
-    }
-
-    // Animated Smooth Scrolling for Navigation Links
-    document.querySelectorAll("nav ul li a").forEach(anchor => {
-        anchor.addEventListener("click", function (event) {
-            event.preventDefault();
-            const targetSection = document.querySelector(this.getAttribute("href"));
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 50,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
-
-    // Contact Form Handling with Confirmation Message
-    const contactForm = document.querySelector("#contact form");
-    if (contactForm) {
-        contactForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            document.querySelector("#contact-message").textContent = "Thank you for reaching out! We will get back to you soon.";
-            contactForm.reset();
-        });
-    }
-
-    // Toggle Mobile Menu with Smooth Animation
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navMenu = document.querySelector("nav ul");
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", function () {
-            navMenu.classList.toggle("active");
-        });
-    }
-
-    // Dark Mode Toggle
-    const darkModeToggle = document.querySelector("#dark-mode-toggle");
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-        });
-    }
-
-    // Product Showcase Animation
-    const productItems = document.querySelectorAll(".product");
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("fade-in");
-            }
-        });
-    }, { threshold: 0.5 });
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Lux Coffee</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#inbox">Inbox</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><button id="dark-mode-toggle">Dark Mode</button></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="home">
+            <h2>Welcome to Lux Coffee</h2>
+            <p>Enjoy the finest coffee experience crafted with passion.</p>
+            <img src="coffee1.jpg" alt="Premium Coffee" class="hero-image">
+        </section>
+        
+        <section id="shop">
+            <h2>Shop</h2>
+            <div class="gallery">
+                <div class="item">
+                    <img src="1.jpg" alt="Caffè Macchiato">
+                    <p>Caffè Macchiato</p>
+                    <button class="buy-button" onclick="addToCart('Caffè Macchiato')">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="2.jpg" alt="Cappuccino">
+                    <p>Cappuccino</p>
+                    <button class="buy-button" onclick="addToCart('Cappuccino')">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="3.jpg" alt="Flat White">
+                    <p>Flat White</p>
+                    <button class="buy-button" onclick="addToCart('Flat White')">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="4.jpg" alt="Latte">
+                    <p>Latte</p>
+                    <button class="buy-button" onclick="addToCart('Latte')">Buy Now</button>
+                </div>
+                <div class="item">
+                    <img src="5.jpg" alt="Americano">
+                    <p>Americano</p>
+                    <button class="buy-button" onclick="addToCart('Americano')">Buy Now</button>
+                </div>
+            </div>
+            <button class="cart-button" onclick="viewCart()"><i class="fas fa-shopping-cart"></i> Cart</button>
+            <button class="add-button"><i class="fas fa-plus"></i> Add Item</button>
+        </section>
+        
+        <section id="inbox">
+            <h2>Inbox</h2>
+            <p>No new messages.</p>
+        </section>
+        
+        <section id="profile">
+            <h2>Your Profile</h2>
+            <p>Welcome, User!</p>
+            <button class="edit-profile">Edit Profile</button>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
+        </footer>
+    </div>
     
-    productItems.forEach(item => observer.observe(item));
-
-    // Simple Cart System
-    const cart = [];
-    document.querySelectorAll(".add-to-cart").forEach(button => {
-        button.addEventListener("click", function () {
-            const productName = this.dataset.name;
-            cart.push(productName);
-            alert(`${productName} added to cart!`);
-        });
-    });
-
-    // Ensure Images Are Loaded Properly
-    const imageContainer = document.querySelector("#gallery");
-    if (imageContainer) {
-        const imageNames = ["coffee1.jpg", "coffee2.jpg", "coffee3.jpg", "coffee4.jpg", "coffee5.jpg", "coffee6.jpg"];
-        imageNames.forEach(img => {
-            const imgElement = document.createElement("img");
-            imgElement.src = img;
-            imgElement.alt = "Coffee Image";
-            imgElement.classList.add("gallery-image");
-            imageContainer.appendChild(imgElement);
-        });
-    }
-});
+    <script src="script.js"></script>
+</body>
+</html>
