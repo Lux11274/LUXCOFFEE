@@ -1,100 +1,126 @@
-/* Import Custom Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
+/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1c1c1c;
-    color: #e0e0e0;
     margin: 0;
     padding: 0;
-    transition: background 0.3s ease-in-out;
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+    text-align: center;
 }
 
-/* Navigation Bar */
-nav {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    width: 100%;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s;
+/* Header */
+header {
+    background-color: #252525;
+    padding: 20px;
+    text-align: center;
 }
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #c19a6b;
+}
+
 nav ul {
     list-style: none;
-    display: flex;
+    padding: 0;
 }
+
 nav ul li {
+    display: inline;
     margin: 0 15px;
 }
+
 nav ul li a {
-    color: #fff;
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-nav ul li a:hover {
-    color: #d4a373;
+    color: #f5f5f5;
+    font-size: 1.2rem;
 }
 
-/* Buttons */
-button {
-    background: #d4a373;
-    color: white;
-    padding: 10px 20px;
+nav ul li a:hover {
+    color: #c19a6b;
+}
+
+/* Sections */
+section {
+    padding: 50px;
+}
+
+#home {
+    background: url('coffee1.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+#home h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+#home p {
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Contact Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input, form textarea {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
     border: none;
     border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #c19a6b;
+    color: white;
     cursor: pointer;
-    transition: all 0.3s;
-}
-button:hover {
-    background: #b88755;
+    font-size: 1rem;
+    border-radius: 5px;
 }
 
-/* Product Showcase */
-.product {
-    background: #2a2a2a;
+form button:hover {
+    background-color: #a6754d;
+}
+
+/* Footer */
+footer {
+    background-color: #252525;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-.product img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 10px;
-}
-.product:hover {
-    transform: scale(1.05);
-}
-
-/* Fade-in Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.fade-in.appear {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Dark Mode */
-.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-mode nav {
-    background: rgba(20, 20, 20, 0.9);
-}
-
-.dark-mode .product {
-    background: #222;
-}
-
-.dark-mode button {
-    background: #8c5e35;
+    margin-top: 20px;
 }

@@ -81,4 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(`${productName} added to cart!`);
         });
     });
+
+    // Ensure Images Are Loaded Properly
+    const imageContainer = document.querySelector("#gallery");
+    if (imageContainer) {
+        const imageNames = ["coffee1.jpg", "coffee2.jpg", "coffee3.jpg", "coffee4.jpg", "coffee5.jpg", "coffee6.jpg"];
+        imageNames.forEach(img => {
+            const imgElement = document.createElement("img");
+            imgElement.src = img;
+            imgElement.alt = "Coffee Image";
+            imgElement.classList.add("gallery-image");
+            imageContainer.appendChild(imgElement);
+        });
+    }
 });

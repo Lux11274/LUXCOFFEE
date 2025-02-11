@@ -7,46 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">Lux Coffee</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><button id="dark-mode-toggle">Dark Mode</button></li>
-        </ul>
-    </nav>
-    
-    <header id="home">
-        <div class="hero">
-            <h1>Welcome to Lux Coffee</h1>
-            <p>Premium coffee made with passion</p>
-            <button>Order Now</button>
-        </div>
+    <header>
+        <h1>Lux Coffee</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="dark-mode-toggle">Dark Mode</button></li>
+            </ul>
+        </nav>
     </header>
     
-    <section id="menu">
-        <h2>Our Menu</h2>
-        <div class="product-container">
-            <div class="product fade-in">
-                <img src="coffee1.jpg" alt="Espresso">
-                <h3>Espresso</h3>
-                <p>Rich & strong coffee shot</p>
-                <button class="add-to-cart" data-name="Espresso">Add to Cart</button>
-            </div>
-            <div class="product fade-in">
-                <img src="coffee2.jpg" alt="Latte">
-                <h3>Latte</h3>
-                <p>Creamy & smooth milk coffee</p>
-                <button class="add-to-cart" data-name="Latte">Add to Cart</button>
-            </div>
-        </div>
+    <section id="home">
+        <h2>Welcome to Lux Coffee</h2>
+        <p>Enjoy the finest coffee experience.</p>
+        <img src="coffee1.jpg" alt="Coffee cup">
     </section>
     
     <section id="about">
         <h2>About Us</h2>
-        <p>Lux Coffee brings the best coffee experience to our customers, sourcing high-quality beans and crafting drinks with love.</p>
+        <p>Lux Coffee is dedicated to serving the best coffee in town.</p>
+    </section>
+    
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="gallery">
+            <img src="coffee2.jpg" alt="Espresso">
+            <img src="coffee3.jpg" alt="Latte">
+            <img src="coffee4.jpg" alt="Cappuccino">
+        </div>
     </section>
     
     <section id="contact">
@@ -55,10 +46,14 @@
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
             <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
+            <button type="submit">Send</button>
         </form>
         <p id="contact-message"></p>
     </section>
+    
+    <footer>
+        <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
+    </footer>
     
     <script src="script.js"></script>
 </body>
