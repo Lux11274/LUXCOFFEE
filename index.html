@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Login and Signup screens -->
     <div id="login-screen" class="login-bg">
         <h2>Login to Lux Coffee</h2>
         <input type="text" id="username" placeholder="Username" required>
@@ -24,6 +25,7 @@
         <p>Already have an account? <button onclick="showLogin()">Login</button></p>
     </div>
 
+    <!-- Main Content -->
     <div id="main-content" style="display: none;">
         <header>
             <h1>Lux Coffee</h1>
@@ -37,62 +39,65 @@
                 </ul>
             </nav>
         </header>
-        
+
         <section id="home">
             <h2>Welcome to Lux Coffee</h2>
             <p>Enjoy the finest coffee experience crafted with passion.</p>
             <img src="coffee1.jpg" alt="Premium Coffee" class="hero-image">
         </section>
-        
+
+        <!-- Search bar -->
+        <input type="text" id="search-bar" placeholder="Search products..." class="search-bar">
+
         <section id="shop">
             <h2>Shop</h2>
             <div class="gallery">
                 <div class="item">
                     <img src="1.jpg" alt="Caffè macchiato">
                     <p>Caffè Macchiato</p>
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
                     <button class="buy-button">Buy Now</button>
                 </div>
                 <div class="item">
                     <img src="2.jpg" alt="Cappuccino">
                     <p>Cappuccino</p>
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
                     <button class="buy-button">Buy Now</button>
                 </div>
-                <div class="item">
-                    <img src="3.jpg" alt="Flat White">
-                    <p>Flat White</p>
-                    <button class="buy-button">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="4.jpg" alt="Latte">
-                    <p>Latte</p>
-                    <button class="buy-button">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="5.jpg" alt="Americano">
-                    <p>Americano</p>
-                    <button class="buy-button">Buy Now</button>
-                </div>
+                <!-- More items -->
             </div>
             <button class="cart-button"><i class="fas fa-shopping-cart"></i> Cart</button>
             <button class="add-button"><i class="fas fa-plus"></i> Add Item</button>
         </section>
-        
+
         <section id="inbox">
             <h2>Inbox</h2>
             <p>No new messages.</p>
         </section>
-        
+
         <section id="profile">
             <h2>Your Profile</h2>
             <p>Welcome, <span id="profile-username"></span>!</p>
             <button class="edit-profile">Edit Profile</button>
         </section>
-        
+
         <footer>
             <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
         </footer>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>

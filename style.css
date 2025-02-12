@@ -1,72 +1,115 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
-    const body = document.body;
-    
-    if (localStorage.getItem("darkMode") === "enabled") {
-        body.classList.add("dark-mode");
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Star Ratings */
+.stars {
+    color: gold;
+    font-size: 20px;
+}
+.star {
+    cursor: pointer;
+}
+.star:hover {
+    color: orange;
+}
+
+/* Search bar styles */
+.search-bar {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Cart Quantity Input */
+.quantity {
+    width: 50px;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul {
+        display: flex;
+        flex-direction: column;
     }
 
-    darkModeToggle.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
-        localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
-    });
-
-    // Signup and Login System
-    function showSignup() {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("signup-screen").style.display = "block";
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
-
-    function showLogin() {
-        document.getElementById("signup-screen").style.display = "none";
-        document.getElementById("login-screen").style.display = "block";
+    .item {
+        text-align: center;
     }
+}
 
-    function createAccount() {
-        let username = document.getElementById("new-username").value;
-        let password = document.getElementById("new-password").value;
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: white;
+}
+body.dark-mode header {
+    background-color: #222;
+}
 
-        if (username && password) {
-            localStorage.setItem(username, password);
-            alert("Account created successfully!");
-            showLogin();
-        } else {
-            alert("Please enter a valid username and password.");
-        }
-    }
+button {
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+button:hover {
+    background-color: #555;
+}
 
-    function login() {
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
+/* Animations */
+button, input, .item {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
 
-        if (localStorage.getItem(username) === password) {
-            document.getElementById("login-screen").style.display = "none";
-            document.getElementById("signup-screen").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-            document.getElementById("profile-username").textContent = username;
-        } else {
-            alert("Invalid credentials! Try again.");
-        }
-    }
-
-    // Cart System
-    let cart = [];
-
-    function addToCart(item) {
-        cart.push(item);
-        alert(`${item} added to cart!`);
-    }
-
-    function viewCart() {
-        alert(cart.length ? `Cart: ${cart.join(", ")}` : "Your cart is empty!");
-    }
-
-    // Expose functions globally
-    window.showSignup = showSignup;
-    window.showLogin = showLogin;
-    window.createAccount = createAccount;
-    window.login = login;
-    window.addToCart = addToCart;
-    window.viewCart = viewCart;
-});
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

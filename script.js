@@ -1,98 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lux Coffee</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div id="login-screen" class="login-bg">
-        <h2>Login to Lux Coffee</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button onclick="login()">Login</button>
-        <p>Don't have an account? <button onclick="showSignup()">Create Account</button></p>
-    </div>
+// Form Validation
+function validateForm() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    if (username == "" || password == "") {
+        alert("All fields are required!");
+        return false;
+    }
+    return true;
+}
 
-    <div id="signup-screen" class="login-bg" style="display: none;">
-        <h2>Create an Account</h2>
-        <input type="text" id="new-username" placeholder="Choose a Username" required>
-        <input type="password" id="new-password" placeholder="Choose a Password" required>
-        <button onclick="createAccount()">Sign Up</button>
-        <p>Already have an account? <button onclick="showLogin()">Login</button></p>
-    </div>
+// Login and Signup logic
+function login() {
+    if (validateForm()) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+    }
+}
 
-    <div id="main-content" style="display: none;">
-        <header>
-            <h1>Lux Coffee</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#shop">Shop</a></li>
-                    <li><a href="#inbox">Inbox</a></li>
-                    <li><a href="#profile">Profile</a></li>
-                    <li><button id="dark-mode-toggle">Dark Mode</button></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <section id="home">
-            <h2>Welcome to Lux Coffee</h2>
-            <p>Enjoy the finest coffee experience crafted with passion.</p>
-            <img src="coffee1.jpg" alt="Premium Coffee" class="hero-image">
-        </section>
-        
-        <section id="shop">
-            <h2>Shop</h2>
-            <div class="gallery">
-                <div class="item">
-                    <img src="1.jpg" alt="Caffè Macchiato">
-                    <p>Caffè Macchiato</p>
-                    <button class="buy-button" onclick="addToCart('Caffè Macchiato')">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="2.jpg" alt="Cappuccino">
-                    <p>Cappuccino</p>
-                    <button class="buy-button" onclick="addToCart('Cappuccino')">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="3.jpg" alt="Flat White">
-                    <p>Flat White</p>
-                    <button class="buy-button" onclick="addToCart('Flat White')">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="4.jpg" alt="Latte">
-                    <p>Latte</p>
-                    <button class="buy-button" onclick="addToCart('Latte')">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="5.jpg" alt="Americano">
-                    <p>Americano</p>
-                    <button class="buy-button" onclick="addToCart('Americano')">Buy Now</button>
-                </div>
-            </div>
-            <button class="cart-button" onclick="viewCart()"><i class="fas fa-shopping-cart"></i> Cart</button>
-            <button class="add-button"><i class="fas fa-plus"></i> Add Item</button>
-        </section>
-        
-        <section id="inbox">
-            <h2>Inbox</h2>
-            <p>No new messages.</p>
-        </section>
-        
-        <section id="profile">
-            <h2>Your Profile</h2>
-            <p>Welcome, <span id="profile-username"></span>!</p>
-            <button class="edit-profile">Edit Profile</button>
-        </section>
-        
-        <footer>
-            <p>&copy; 2025 Lux Coffee. All Rights Reserved.</p>
-        </footer>
-    </div>
-    
-    <script src="script.js"></script>
-</body>
-</html>
+function createAccount() {
+    let newUsername = document.getElementById("new-username").value;
+    let newPassword = document.getElementById("new-password").value;
+    if (newUsername == "" || newPassword == "") {
+        alert("All fields are required!");
+        return;
+    }
+    alert("Account created!");
+    showLogin();
+}
+
+function showSignup() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('signup-screen').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('signup-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'block';
+}
+
+// Star Ratings
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', (e) => {
+        let rating = Array.from(e.target.parentElement.children).indexOf(e.target) + 1;
+        alert(`You rated this item ${rating} stars!`);
+    });
+});
+
+// Search Functionality
+document.getElementById('search-bar').addEventListener('input', function(e) {
+    let searchTerm = e.target.value.toLowerCase();
+    let items = document.querySelectorAll('.item');
+    items.forEach(item => {
+        let name = item.querySelector('p').textContent.toLowerCase();
+        if (name.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
+// Dark Mode Toggle
+document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
+// Cart Persistence
+const cart = [];
+
+function addToCart(item) {
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert("Item added to cart!");
+}
+
+// Notification System
+function showNotification(message) {
+    let notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerText = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}
