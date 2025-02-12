@@ -48,14 +48,30 @@ footer {
     padding: 10px;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: #333;
-    color: #fff;
+/* Background for login/signup */
+.login-bg {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-header.dark-mode {
-    background-color: #000;
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Centering the form */
+input {
+    width: 80%;
+    max-width: 350px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 button {
@@ -64,10 +80,30 @@ button {
     color: #333;
     border: none;
     cursor: pointer;
+    width: 80%;
+    max-width: 350px;
+    margin: 10px 0;
+    border-radius: 5px;
 }
 
 button:hover {
     background-color: #e0b361;
+}
+
+/* Centering error message */
+#error-message {
+    text-align: center;
+    color: red;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+header.dark-mode {
+    background-color: #000;
 }
 
 /* Responsive Styles */

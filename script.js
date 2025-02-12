@@ -52,13 +52,17 @@ function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+    // Fetch stored credentials from localStorage
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
     if (!username || !password) {
         document.getElementById('login-error-message').textContent = "Both fields are required!";
         document.getElementById('login-error-message').style.display = 'block';
         return;
     }
 
-    if (username === 'test' && password === 'password') {
+    if (username === storedUsername && password === storedPassword) {
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
     } else {
@@ -76,6 +80,10 @@ function createAccount() {
         document.getElementById('signup-error-message').style.display = 'block';
         return;
     }
+
+    // Store credentials in localStorage
+    localStorage.setItem('username', newUsername);
+    localStorage.setItem('password', newPassword);
 
     // Simulate account creation
     alert('Account created successfully!');
