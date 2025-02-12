@@ -1,84 +1,63 @@
-// Form Validation
-function validateForm() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    if (username == "" || password == "") {
-        alert("All fields are required!");
-        return false;
-    }
-    return true;
+// Global variables
+let cart = [];
+
+// Function to switch between sections
+function showSection(section) {
+    const sections = document.querySelectorAll('.section-content');
+    sections.forEach((sec) => sec.style.display = 'none');
+    
+    document.getElementById(section).style.display = 'block';
+    const links = document.querySelectorAll('nav button');
+    links.forEach(link => link.classList.remove('active'));
+    document.getElementById(`${section}-link`).classList.add('active');
 }
 
-// Login and Signup logic
+// Function for Login
 function login() {
-    if (validateForm()) {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    }
-}
-
-function createAccount() {
-    let newUsername = document.getElementById("new-username").value;
-    let newPassword = document.getElementById("new-password").value;
-    if (newUsername == "" || newPassword == "") {
-        alert("All fields are required!");
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    if (!username || !password) {
+        alert("Please enter both username and password.");
         return;
     }
-    alert("Account created!");
-    showLogin();
+
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('profile-username').textContent = username;
 }
 
+// Show Signup screen
 function showSignup() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('signup-screen').style.display = 'block';
 }
 
+// Show Login screen
 function showLogin() {
     document.getElementById('signup-screen').style.display = 'none';
     document.getElementById('login-screen').style.display = 'block';
 }
 
-// Star Ratings
-document.querySelectorAll('.star').forEach(star => {
-    star.addEventListener('click', (e) => {
-        let rating = Array.from(e.target.parentElement.children).indexOf(e.target) + 1;
-        alert(`You rated this item ${rating} stars!`);
-    });
-});
+// Function to create an account
+function createAccount() {
+    const newUsername = document.getElementById('new-username').value;
+    const newEmail = document.getElementById('new-email').value;
+    const newPassword = document.getElementById('new-password').value;
 
-// Search Functionality
-document.getElementById('search-bar').addEventListener('input', function(e) {
-    let searchTerm = e.target.value.toLowerCase();
-    let items = document.querySelectorAll('.item');
-    items.forEach(item => {
-        let name = item.querySelector('p').textContent.toLowerCase();
-        if (name.includes(searchTerm)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-});
+    if (!newUsername || !newEmail || !newPassword) {
+        alert("Please fill in all fields.");
+        return;
+    }
 
-// Dark Mode Toggle
-document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+    showLogin();
+}
+
+// Toggle Dark Mode
+function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-});
-
-// Cart Persistence
-const cart = [];
-
-function addToCart(item) {
-    cart.push(item);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert("Item added to cart!");
+    localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
 }
 
-// Notification System
-function showNotification(message) {
-    let notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerText = message;
-    document.body.appendChild(notification);
-    setTimeout(() => notification.remove(), 3000);
-}
+// Check for Dark Mode preference on page load
+if (localStorage.getItem('dark-mode') === 'true') {
+    document.body.classList
