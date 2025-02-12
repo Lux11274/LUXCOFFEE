@@ -10,33 +10,37 @@
 <body>
     <!-- Login and Signup screens -->
     <div id="login-screen" class="login-bg">
-        <h2>Login to Lux Coffee</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button onclick="login()">Login</button>
-        <p>Don't have an account? <button onclick="showSignup()">Create Account</button></p>
-        <p id="login-error-message" style="color: red; display: none;"></p> <!-- Error Message -->
+        <div class="form-container">
+            <h2>Login to Lux Coffee</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <button onclick="showSignup()">Create Account</button></p>
+            <div id="login-error-message"></div>
+        </div>
     </div>
 
     <div id="signup-screen" class="login-bg" style="display: none;">
-        <h2>Create an Account</h2>
-        <input type="text" id="new-username" placeholder="Choose a Username" required>
-        <input type="password" id="new-password" placeholder="Choose a Password" required>
-        <button onclick="createAccount()">Sign Up</button>
-        <p>Already have an account? <button onclick="showLogin()">Login</button></p>
-        <p id="signup-error-message" style="color: red; display: none;"></p> <!-- Error Message -->
+        <div class="form-container">
+            <h2>Create an Account</h2>
+            <input type="text" id="new-username" placeholder="Choose a Username" required>
+            <input type="password" id="new-password" placeholder="Choose a Password" required>
+            <button onclick="createAccount()">Sign Up</button>
+            <p>Already have an account? <button onclick="showLogin()">Login</button></p>
+            <div id="signup-error-message"></div>
+        </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content (Hidden until login is successful) -->
     <div id="main-content" style="display: none;">
         <header>
             <h1>Lux Coffee</h1>
             <nav>
                 <ul>
-                    <li><a href="#home" onclick="showHome()">Home</a></li>
-                    <li><a href="#shop" onclick="showShop()">Shop</a></li>
-                    <li><a href="#inbox" onclick="showInbox()">Inbox</a></li>
-                    <li><a href="#profile" onclick="showProfile()">Profile</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#inbox">Inbox</a></li>
+                    <li><a href="#profile">Profile</a></li>
                     <li><button id="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button></li>
                 </ul>
             </nav>
@@ -48,38 +52,12 @@
             <img src="coffee1.jpg" alt="Premium Coffee" class="hero-image">
         </section>
 
-        <!-- Search bar -->
-        <input type="text" id="search-bar" placeholder="Search products..." class="search-bar" onkeyup="searchProducts()">
-
         <section id="shop">
             <h2>Shop</h2>
             <div class="gallery">
-                <div class="item">
-                    <img src="1.jpg" alt="Caffè macchiato">
-                    <p>Caffè Macchiato</p>
-                    <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9734;</span>
-                        <span class="star">&#9734;</span>
-                    </div>
-                    <button class="buy-button" onclick="addToCart('Caffè Macchiato')">Buy Now</button>
-                </div>
-                <div class="item">
-                    <img src="2.jpg" alt="Cappuccino">
-                    <p>Cappuccino</p>
-                    <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9734;</span>
-                        <span class="star">&#9734;</span>
-                        <span class="star">&#9734;</span>
-                    </div>
-                    <button class="buy-button" onclick="addToCart('Cappuccino')">Buy Now</button>
-                </div>
+                <!-- Add product items here -->
             </div>
-            <button class="cart-button" onclick="viewCart()"><i class="fas fa-shopping-cart"></i> Cart (0)</button>
+            <button class="cart-button"><i class="fas fa-shopping-cart"></i> Cart</button>
         </section>
 
         <section id="inbox">
@@ -90,7 +68,7 @@
         <section id="profile">
             <h2>Your Profile</h2>
             <p>Welcome, <span id="profile-username"></span>!</p>
-            <button class="edit-profile" onclick="editProfile()">Edit Profile</button>
+            <button class="edit-profile">Edit Profile</button>
         </section>
 
         <footer>

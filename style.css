@@ -5,73 +5,20 @@ body {
     padding: 0;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.hero-image {
-    width: 100%;
-    height: auto;
-}
-
-section {
-    padding: 20px;
-}
-
-.search-bar {
-    margin: 20px 0;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-}
-
-/* Background for login/signup */
-.login-bg {
-    background-image: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 h2 {
     text-align: center;
+    color: #fff;
     margin-bottom: 20px;
 }
 
-/* Centering the form */
 input {
     width: 80%;
     max-width: 350px;
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: none;
+    box-sizing: border-box;
 }
 
 button {
@@ -90,10 +37,35 @@ button:hover {
     background-color: #e0b361;
 }
 
-/* Centering error message */
-#error-message {
+/* Center form on login/signup screen */
+.login-bg {
+    background: linear-gradient(45deg, #ff9a8b, #ff6a00, #ff2a68);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+#login-error-message, #signup-error-message {
     color: red;
+    margin-top: 10px;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
 }
 
 /* Dark Mode */
@@ -104,16 +76,4 @@ body.dark-mode {
 
 header.dark-mode {
     background-color: #000;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    nav ul {
-        text-align: center;
-        padding: 0;
-    }
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
 }
