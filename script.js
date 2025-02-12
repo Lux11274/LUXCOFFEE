@@ -1,82 +1,129 @@
-// Global variables
 let cart = [];
+let darkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
+const profileInfo = JSON.parse(localStorage.getItem('profile')) || { username: 'Guest' };
 
-// Function to switch between sections
-function showSection(section) {
-    const sections = document.querySelectorAll('.section-content');
-    sections.forEach((sec) => sec.style.display = 'none');
-    
-    document.getElementById(section).style.display = 'block';
-    const links = document.querySelectorAll('nav button');
-    links.forEach(link => link.classList.remove('active'));
-    document.getElementById(`${section}-link`).classList.add('active');
+window.onload = function() {
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    document.getElementById('profile-username').textContent = profileInfo.username;
+};
+
+function showHome() {
+    document.getElementById('home').style.display = 'block';
+    document.getElementById('shop').style.display = 'none';
+    document.getElementById('inbox').style.display = 'none';
+    document.getElementById('profile').style.display = 'none';
 }
 
-// Function for Login
+function showShop() {
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('shop').style.display = 'block';
+    document.getElementById('inbox').style.display = 'none';
+    document.getElementById('profile').style.display = 'none';
+}
+
+function showInbox() {
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('shop').style.display = 'none';
+    document.getElementById('inbox').style.display = 'block';
+    document.getElementById('profile').style.display = 'none';
+}
+
+function showProfile() {
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('shop').style.display = 'none';
+    document.getElementById('inbox').style.display = 'none';
+    document.getElementById('profile').style.display = 'block';
+}
+
+function toggleDarkMode() {
+    darkMode = !darkMode;
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'true');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'false');
+    }
+}
+
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
     if (!username || !password) {
-        alert("Please enter both username and password.");
+        document.getElementById('login-error-message').textContent = "Both fields are required!";
+        document.getElementById('login-error-message').style.display = 'block';
         return;
     }
 
-    // Simulate a successful login
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('main-content').style.display = 'block';
-    document.getElementById('profile-username').textContent = username;
+    if (username === 'test' && password === 'password') {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+    } else {
+        document.getElementById('login-error-message').textContent = "Invalid credentials!";
+        document.getElementById('login-error-message').style.display = 'block';
+    }
 }
 
-// Show Signup screen
+function createAccount() {
+    const newUsername = document.getElementById('new-username').value;
+    const newPassword = document.getElementById('new-password').value;
+
+    if (!newUsername || !newPassword) {
+        document.getElementById('signup-error-message').textContent = "Both fields are required!";
+        document.getElementById('signup-error-message').style.display = 'block';
+        return;
+    }
+
+    // Simulate account creation
+    alert('Account created successfully!');
+    showLogin();
+}
+
 function showSignup() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('signup-screen').style.display = 'block';
 }
 
-// Show Login screen
 function showLogin() {
     document.getElementById('signup-screen').style.display = 'none';
     document.getElementById('login-screen').style.display = 'block';
 }
 
-// Function to create an account
-function createAccount() {
-    const newUsername = document.getElementById('new-username').value;
-    const newEmail = document.getElementById('new-email').value;
-    const newPassword = document.getElementById('new-password').value;
-
-    if (!newUsername || !newEmail || !newPassword) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    // Simulate account creation and go to the login screen
-    alert('Account created successfully!');
-    showLogin();
+function addToCart(item) {
+    cart.push(item);
+    updateCartButton();
 }
 
-// Toggle Dark Mode
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+function updateCartButton() {
+    const cartButton = document.querySelector('.cart-button');
+    cartButton.textContent = `Cart (${cart.length})`;
 }
 
-// Check for Dark Mode preference on page load
-if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList.add('dark-mode');
-}
-
-// Function to add item to cart
-function addToCart(itemName) {
-    cart.push(itemName);
-    alert(`${itemName} added to cart.`);
-}
-
-// Function to view cart
 function viewCart() {
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-    } else {
-        alert("Your Cart: " + cart.join(", "));
+    alert('Items in cart: ' + cart.join(', '));
+}
+
+function searchProducts() {
+    const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+        const itemName = item.querySelector('p').textContent.toLowerCase();
+        if (itemName.includes(searchQuery)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function editProfile() {
+    const newUsername = prompt('Enter new username:', profileInfo.username);
+    if (newUsername) {
+        profileInfo.username = newUsername;
+        localStorage.setItem('profile', JSON.stringify(profileInfo));
+        document.getElementById('profile-username').textContent = profileInfo.username;
     }
 }
