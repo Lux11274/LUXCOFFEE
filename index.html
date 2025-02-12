@@ -8,11 +8,20 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="login-screen">
+    <div id="login-screen" class="login-bg">
         <h2>Login to Lux Coffee</h2>
         <input type="text" id="username" placeholder="Username" required>
         <input type="password" id="password" placeholder="Password" required>
         <button onclick="login()">Login</button>
+        <p>Don't have an account? <button onclick="showSignup()">Create Account</button></p>
+    </div>
+
+    <div id="signup-screen" class="login-bg" style="display: none;">
+        <h2>Create an Account</h2>
+        <input type="text" id="new-username" placeholder="Choose a Username" required>
+        <input type="password" id="new-password" placeholder="Choose a Password" required>
+        <button onclick="createAccount()">Sign Up</button>
+        <p>Already have an account? <button onclick="showLogin()">Login</button></p>
     </div>
 
     <div id="main-content" style="display: none;">
@@ -75,7 +84,7 @@
         
         <section id="profile">
             <h2>Your Profile</h2>
-            <p>Welcome, User!</p>
+            <p>Welcome, <span id="profile-username"></span>!</p>
             <button class="edit-profile">Edit Profile</button>
         </section>
         
