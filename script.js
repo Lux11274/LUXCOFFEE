@@ -21,6 +21,7 @@ function login() {
         return;
     }
 
+    // Simulate a successful login
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
     document.getElementById('profile-username').textContent = username;
@@ -49,6 +50,8 @@ function createAccount() {
         return;
     }
 
+    // Simulate account creation and go to the login screen
+    alert('Account created successfully!');
     showLogin();
 }
 
@@ -60,4 +63,20 @@ function toggleDarkMode() {
 
 // Check for Dark Mode preference on page load
 if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList
+    document.body.classList.add('dark-mode');
+}
+
+// Function to add item to cart
+function addToCart(itemName) {
+    cart.push(itemName);
+    alert(`${itemName} added to cart.`);
+}
+
+// Function to view cart
+function viewCart() {
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+    } else {
+        alert("Your Cart: " + cart.join(", "));
+    }
+}
